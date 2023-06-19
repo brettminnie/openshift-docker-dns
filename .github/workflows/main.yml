@@ -8,7 +8,8 @@ on:
       - "main"
 
 jobs:
-  generate:
+  build:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: 'Get Previous tag'
@@ -28,9 +29,6 @@ jobs:
           title: ${{ steps.semvers.outputs.patch }}
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-  build:
-    runs-on: ubuntu-latest
-    steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Login to Docker Hub
