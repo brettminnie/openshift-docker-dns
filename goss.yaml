@@ -36,7 +36,7 @@ command:
   "named -v":
     exit-status: 0
     stdout:
-    - BIND 9.11.36-RedHat-9.11.36-5.el8_7.2 (Extended Support Version) <id:68dbd5b>
+    - BIND 9.11.36-RedHat-9.11.36-8.el8 (Extended Support Version) <id:68dbd5b>
     stderr: []
     timeout: 10000
 process:
