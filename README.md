@@ -1,5 +1,5 @@
 # Introduction
-Container to run haproxy server
+Container to run named (bind) dns server
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:

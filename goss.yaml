@@ -1,61 +1,44 @@
 file:
-  /config/haproxy.cfg:
+  /config/named.conf:
     exists: true
     owner: root
     group: root
     filetype: file
-    contains: [ ]
-  /etc/haproxy/conf.d:
-    exists: true
-    mode: "0755"
-    size: 4096
-    owner: root
-    group: root
-    filetype: directory
-    contains: [ ]
+    contains: []
   /usr/local/bin/entrypoint.sh:
     exists: true
     owner: root
     group: root
     filetype: file
-    contains: [ ]
+    contains: []
 package:
-  haproxy:
+  bind:
     installed: true
     versions:
-      - 1.8.27
-  rsyslog:
+    - 9.11.36
+  bind-utils:
     installed: true
     versions:
-      - 8.2102.0
-  supervisor:
-    installed: true
-    versions:
-      - 4.2.2
+    - 9.11.36
 port:
-  tcp:8080:
+  tcp:1053:
     listening: true
 user:
-  haproxy:
+  named:
     exists: true
-    uid: 998
-    gid: 996
+    uid: 25
+    gid: 25
     groups:
-      - haproxy
-    home: /var/lib/haproxy
-    shell: /sbin/nologin
+    - named
+    home: /var/named
+    shell: /bin/false
 command:
-  haproxy -v:
+  "named -v":
     exit-status: 0
     stdout:
-      - HA-Proxy version 1.8.27-493ce0b 2020/11/06
-      - Copyright 2000-2020 Willy Tarreau <willy@haproxy.org>
-    stderr: [ ]
-    timeout: 0
+    - BIND 9.11.36-RedHat-9.11.36-5.el8_7.2 (Extended Support Version) <id:68dbd5b>
+    stderr: []
+    timeout: 10000
 process:
-  haproxy:
-    running: true
-  rsyslogd:
-    running: true
-  supervisord:
+  named:
     running: true
