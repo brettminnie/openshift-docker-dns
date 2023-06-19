@@ -54,7 +54,9 @@ jobs:
           severity: 'CRITICAL,HIGH'
       - name: Retag and Push Image
         run: |
-          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:el8-${{ steps.semvers.outputs.patch }} ${{ secrets.DOCKERHUB_USERNAME }}/named:latest
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:el8-${{ steps.semvers.outputs.patch }}
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:el8-latest
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:latest
           docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/named
 
 ...
