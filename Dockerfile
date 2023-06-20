@@ -1,16 +1,14 @@
-ARG BUILD_IMAGE="almalinux:8-minimal"
+ARG BUILD_IMAGE="alpine:3.18"
 
 FROM ${BUILD_IMAGE}
 ENV DATA_DIR="/config" \
     BIND_USER=named
 
 COPY container_resources/entrypoint.sh /usr/local/bin/
-RUN microdnf update -y && \
-    microdnf install -y bind bind-utils which && \
+RUN apk update && \
+    apk add bind==9.18.14-r1 bind-tools==9.18.14-r1 --no-cache && \
+    rm -rf /var/cache/apk/* && \
     mkdir /config && \
-    microdnf clean all && \
-    rm -rf /tmp/* && \
-    rm -rf /usr/local/share/man/* && \
     chmod +x /usr/local/bin/entrypoint.sh
 
 VOLUME ${DATA_DIR}
