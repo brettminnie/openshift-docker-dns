@@ -58,7 +58,7 @@ jobs:
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-          git tag -s "${{ steps.semvers.outputs.patch }}"
+          git tag -a "${{ steps.semvers.outputs.patch }}" -m "Build ${{ github.run_id }} on commit ${{ github.sha }}"
           git push origin "${{ steps.semvers.outputs.patch }}"
 
 ...
