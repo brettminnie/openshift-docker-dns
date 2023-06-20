@@ -56,6 +56,8 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         shell: bash
         run: |
+          git config user.email "${{ secrets.COMMIT_EMAIL }}"
+          git config user.name "${{ secrets.COMMIT_USER }}"
           git tag -s ${{ steps.semvers.outputs.patch }}
           git push origin --tags
 
