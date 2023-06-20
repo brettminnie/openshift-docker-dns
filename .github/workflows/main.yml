@@ -52,7 +52,7 @@ jobs:
           docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:latest
           docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/named
       - name: Push our tag
-        uses: actions-ecosystem/action-push-tag@v1
+        uses: thejeff77/action-push-tag@v1.0.0
         with:
           tag: ${{ steps.semvers.outputs.patch }}
           message: 'Github Build ${{ github.run_id }} Created new tag ${{ steps.semvers.outputs.patch }} on ref ${{ github.ref }}'
