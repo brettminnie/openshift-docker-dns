@@ -51,14 +51,10 @@ jobs:
           docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:el8-latest
           docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:latest
           docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/named
-      - name: 'Create git tag'
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        shell: bash
-        run: |
-          git config user.email "${{ secrets.COMMIT_EMAIL }}"
-          git config user.name "${{ secrets.COMMIT_USER }}"
-          git tag -s ${{ steps.semvers.outputs.patch }}
-          git push origin --tags
+      - name: Push our tag
+        uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.semvers.outputs.patch }}
+          message: 'Github Build ${{ github.run_id }} Created new tag ${{ steps.semvers.outputs.patch }} on ref ${{ github.ref }}'
 
 ...
