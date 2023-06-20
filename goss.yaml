@@ -15,11 +15,11 @@ package:
   bind:
     installed: true
     versions:
-    - 9.11.36
-  bind-utils:
+    - 9.18.14-r1
+  bind-tools:
     installed: true
     versions:
-    - 9.11.36
+    - 9.18.14-r1
 port:
   tcp:1053:
     listening: true
@@ -36,7 +36,7 @@ command:
   "named -v":
     exit-status: 0
     stdout:
-    - BIND 9.11.36-RedHat-9.11.36-8.el8 (Extended Support Version) <id:68dbd5b>
+    - BIND 9.18.14-r1-RedHat-9.18.14-r1-8.el8 (Extended Support Version) <id:68dbd5b>
     stderr: []
     timeout: 10000
 process:
