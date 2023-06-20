@@ -46,15 +46,19 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
       - name: Retag and Push Image
+        shell: bash
         run: |
           docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:el8-${{ steps.semvers.outputs.patch }}
           docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:el8-latest
           docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:latest
           docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/named
       - name: Push our tag
-        uses: thejeff77/action-push-tag@v1.0.0
-        with:
-          tag: ${{ steps.semvers.outputs.patch }}
-          message: 'Github Build ${{ github.run_id }} Created new tag ${{ steps.semvers.outputs.patch }} on ref ${{ github.ref }}'
+        shell: bash
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+          git tag -s "${{ steps.semvers.outputs.patch }}"
+          git push origin "${{ steps.semvers.outputs.patch }}"
 
 ...
