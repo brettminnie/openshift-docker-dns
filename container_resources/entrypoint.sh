@@ -22,6 +22,12 @@ create_pid_dir() {
   chown root:${BIND_USER} /var/run/bind
 }
 
+create_dynamic_dir() {
+  mkdir -p /var/bind/dynamic
+  chmod 0775 /var/run/bind
+  chown root:${BIND_USER} /var/bind/dynamic
+}
+
 create_bind_cache_dir() {
   mkdir -p /var/cache/bind
   chmod 0775 /var/cache/bind
@@ -36,6 +42,7 @@ create_alias_create_key(){
 create_pid_dir
 create_bind_data_dir
 create_bind_cache_dir
+create_dynamic_dir
 create_alias_create_key
 
 # allow arguments to be passed to bind
