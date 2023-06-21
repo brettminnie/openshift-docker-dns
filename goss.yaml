@@ -5,7 +5,7 @@ file:
     group: root
     filetype: file
     contains: []
-  /usr/local/bin/entrypoint.sh:
+  /usr/bin/entrypoint.sh:
     exists: true
     owner: root
     group: root
@@ -26,17 +26,17 @@ port:
 user:
   named:
     exists: true
-    uid: 25
-    gid: 25
+    uid: 100
+    gid: 101
     groups:
     - named
-    home: /var/named
-    shell: /bin/false
+    home: /etc/bind
+    shell: /sbin/nologin
 command:
   "named -v":
     exit-status: 0
     stdout:
-    - BIND 9.18.14-r1-RedHat-9.18.14-r1-8.el8 (Extended Support Version) <id:68dbd5b>
+    - BIND 9.18.14 (Extended Support Version) <id:2c5e22f>
     stderr: []
     timeout: 10000
 process:
