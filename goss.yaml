@@ -15,11 +15,11 @@ package:
   bind:
     installed: true
     versions:
-    - 9.11.36
+    - 9.16.23
   bind-utils:
     installed: true
     versions:
-    - 9.11.36
+    - 9.16.23
 port:
   tcp:1053:
     listening: true
@@ -31,7 +31,7 @@ user:
     groups:
     - named
     home: /var/named
-    shell: /bin/false
+    shell: /sbin/nologin
 command:
   "named -v":
     exit-status: 0
