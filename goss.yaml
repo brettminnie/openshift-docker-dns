@@ -15,11 +15,11 @@ package:
   bind:
     installed: true
     versions:
-    - 9.18.14-r1
+    - 9.20.17-r0
   bind-tools:
     installed: true
     versions:
-    - 9.18.14-r1
+    - 9.20.17-r0
 port:
   tcp:1053:
     listening: true
@@ -36,7 +36,7 @@ command:
   "named -v":
     exit-status: 0
     stdout:
-    - BIND 9.18.14 (Extended Support Version) <id:2c5e22f>
+    - BIND 9.20.17 (Stable Release) <id:00545e4>
     stderr: []
     timeout: 10000
 process:
