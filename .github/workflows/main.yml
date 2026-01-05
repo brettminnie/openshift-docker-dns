@@ -7,6 +7,7 @@ on:
     branches:
       - "main"
       - "alpine"
+      - "el9"
 
 jobs:
   build:
@@ -49,8 +50,8 @@ jobs:
       - name: Retag and Push Image
         shell: bash
         run: |
-          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:el8-${{ steps.semvers.outputs.patch }}
-          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:el8-latest
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:el9-${{ steps.semvers.outputs.patch }}
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:el9-latest
           docker tag ${{ secrets.DOCKERHUB_USERNAME }}/named:${{ github.sha }} ${{ secrets.DOCKERHUB_USERNAME }}/named:latest
           docker push --all-tags ${{ secrets.DOCKERHUB_USERNAME }}/named
       - name: Push our tag once the build has completed

@@ -1,4 +1,4 @@
-ARG BUILD_IMAGE="almalinux:8-minimal"
+ARG BUILD_IMAGE="almalinux:9-minimal"
 
 FROM ${BUILD_IMAGE}
 ENV DATA_DIR="/config" \
